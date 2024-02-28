@@ -5,7 +5,7 @@ import { FacebookFilled, TikTokFilled } from "@ant-design/icons";
 const Footer = () => {
   const { isMounted } = useMounted();
   return (
-    <div className="bg-slate-100">
+    <div className="bg-slate-100 mt-[5rem]">
       <div className="layout-container py-[1rem]">
         <div className="grid grid-cols-1 sm:grid-cols-2 max-sm:gap-[1rem] items-center">
           <div>
