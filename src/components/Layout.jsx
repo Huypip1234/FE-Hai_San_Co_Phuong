@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         width={100}
         height={100}
         alt="call"
-        className="fixed bottom-[1rem] right-[1rem] cursor-pointer "
+        className="fixed bottom-0 sm:bottom-[1rem] right-0 sm:right-[1rem] cursor-pointer z-[10]"
       />
       <Header />
       {children}
