@@ -6,8 +6,8 @@ const Footer = () => {
   const { isMounted } = useMounted();
   return (
     <div className="bg-slate-100 mt-[5rem]">
-      <div className="layout-container py-[1rem]">
-        <div className="grid grid-cols-1 sm:grid-cols-2 max-sm:gap-[1rem] items-center">
+      <div className="layout-container py-[3rem]">
+        <div className="grid grid-cols-1 gap-[1rem] sm:grid-cols-2 items-center">
           <div>
             <h3 className="text-primary font-[700] text-[18px] sm:text-[24px]">
               Hải Sản Cô Phương
