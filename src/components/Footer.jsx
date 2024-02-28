@@ -49,12 +49,12 @@ const Footer = () => {
                 <script
                   async
                   defer
-                  crossorigin="anonymous"
+                  crossOrigin="anonymous"
                   src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v19.0&appId=411097243526646"
                   nonce="dN8soO0F"
                 ></script>
                 <div
-                  class="fb-page"
+                  className="fb-page"
                   data-href="https://www.facebook.com/haisancophuong1974/"
                   data-tabs=""
                   data-width=""
@@ -66,7 +66,7 @@ const Footer = () => {
                 >
                   <blockquote
                     cite="https://www.facebook.com/haisancophuong1974/"
-                    class="fb-xfbml-parse-ignore"
+                    className="fb-xfbml-parse-ignore"
                   >
                     <a href="https://www.facebook.com/haisancophuong1974/">
                       Hải Sản Cô Phương

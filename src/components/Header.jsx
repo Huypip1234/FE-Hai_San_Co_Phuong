@@ -40,7 +40,6 @@ const Header = () => {
             size="large"
             placeholder="Bạn đang tìm gì?"
             enterButton
-            focus={true}
           />
           <CloseOutlined
             onClick={() => {

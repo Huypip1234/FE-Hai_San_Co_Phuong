@@ -5,7 +5,7 @@ import Link from "next/link";
 const ProductItem = ({ ...props }) => {
   return (
     <div {...props}>
-      <Link href="/">
+      <Link href={`/product/${1}`}>
         <div className="border-secondary border-[1px] group ">
           <div className="relative w-full aspect-square overflow-hidden">
             <CustomImage
@@ -20,7 +20,9 @@ const ProductItem = ({ ...props }) => {
             <h2 className="text-[16px] sm:text-[18px] text-secondary">
               Mực khô
             </h2>
-            <p className="text-[14px] sm:text-[16px] text-primary">300,000đ</p>
+            <p className="text-[14px] sm:text-[16px] text-primary">
+              300,000đ/kg
+            </p>
           </div>
         </div>
       </Link>

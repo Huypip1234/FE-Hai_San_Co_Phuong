@@ -12,7 +12,7 @@ const Loading = () => {
         src={defaultImage}
         className="rounded-xl transition-all duration-300 ease-in-out animate-bounce max-sm:w-[100px] max-sm:h-[100px]"
       /> */}
-      <p className="font-[700] text-[24px] sm:text-[36px] text-primary transition-all duration-300 ease-in-out animate-bounce ">
+      <p className="font-[700] text-[24px] sm:text-[36px] text-primary transition-all duration-300 ease-in-out animate-pulse ">
         Hải Sản Cô Phương
       </p>
     </div>
