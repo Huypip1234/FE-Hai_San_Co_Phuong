@@ -11,7 +11,7 @@
 
 @layer components {
   .layout-container {
-    @apply max-w-[1700px] mx-auto;
+    @apply max-w-[1700px] mx-auto px-[24px];
   }
 }
 

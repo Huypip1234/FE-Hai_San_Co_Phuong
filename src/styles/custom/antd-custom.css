@@ -1,3 +1,7 @@
+.custom-search input::placeholder {
+  @apply text-slate-600;
+}
+
 .custom-search .ant-input-group-addon {
   @apply bg-primary;
 }
