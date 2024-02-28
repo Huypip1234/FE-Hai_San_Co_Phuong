@@ -2,7 +2,7 @@
 
 import CustomImage from "@/components/custom/CustomImage";
 import banner from "../../public/images/banner.jpg";
-import logo from "../../public/images/logo-main.png";
+import bannerMobile from "../../public/images/banner-mobile.png";
 import ProductItem from "@/components/ProductItem";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -31,7 +31,7 @@ export default function Home() {
       <CustomImage
         alt="banner"
         quality={100}
-        src={logo}
+        src={bannerMobile}
         className="w-full rounded-lg sm:hidden"
       />
 
