@@ -29,7 +29,7 @@ const ProductDetail = () => {
             Mực khô vân đồn
           </h2>
 
-          <p className="text-primary font-[400] text-[18px] sm:text-[24px]">
+          <p className="text-primary font-[500] text-[18px] sm:text-[24px]">
             300,000đ/kg
           </p>
           <Divider />

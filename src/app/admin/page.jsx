@@ -7,10 +7,18 @@ import { Form } from "antd";
 import CustomInput from "@/components/custom/CustomInput";
 import CustomButton from "@/components/custom/CustomButton";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import { toastSuccess } from "@/utils/toast";
 
 const Admin = () => {
+  const router = useRouter();
+  const onLogin = () => {
+    router.push("/admin/dashboard");
+    toastSuccess("Đăng nhập thành công!");
+  };
+
   return (
-    <div className="max-w-[30rem] sm:h-screen px-[16px] sm:px-[24px] mx-auto flex flex-col items-center justify-center py-[1rem]">
+    <div className="admin-container sm:h-screen flex flex-col items-center justify-center py-[1rem]">
       <div className="flex flex-col items-center">
         <Link href="/" className="inline-block">
           <CustomImage
@@ -29,7 +37,7 @@ const Admin = () => {
 
       <div className="mt-[2rem] w-full">
         <Form
-          onFinish={() => {}}
+          onFinish={onLogin}
           layout="vertical"
           name="add_project"
           className="w-full"
@@ -40,7 +48,7 @@ const Admin = () => {
             rules={[
               {
                 required: true,
-                message: "Chỗ này chưa nhập!",
+                message: "Chỗ này chưa được nhập!",
               },
             ]}
           >
@@ -55,7 +63,7 @@ const Admin = () => {
             rules={[
               {
                 required: true,
-                message: "Chỗ này chưa nhập!",
+                message: "Chỗ này chưa được nhập!",
               },
             ]}
           >

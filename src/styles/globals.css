@@ -13,6 +13,9 @@
   .layout-container {
     @apply max-w-[1700px] mx-auto px-[16px] sm:px-[24px];
   }
+  .admin-container {
+    @apply max-w-[30rem] px-[16px] sm:px-[24px] mx-auto;
+  }
 }
 
 @layer utilities {

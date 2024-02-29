@@ -1,5 +1,5 @@
 import React from "react";
-import CustomImage from "./custom/CustomImage";
+import CustomImage from "../components/custom/CustomImage";
 import Link from "next/link";
 
 const ProductItem = ({ ...props }) => {
@@ -20,7 +20,7 @@ const ProductItem = ({ ...props }) => {
             <h2 className="text-[16px] sm:text-[18px] text-secondary">
               Mực khô
             </h2>
-            <p className="text-[14px] sm:text-[16px] text-primary">
+            <p className="text-[14px] font-[500] sm:text-[16px] text-primary">
               300,000đ/kg
             </p>
           </div>

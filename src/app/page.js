@@ -3,7 +3,7 @@
 import CustomImage from "@/components/custom/CustomImage";
 import banner from "../../public/images/banner.jpg";
 import bannerMobile from "../../public/images/banner-mobile.png";
-import ProductItem from "@/components/ProductItem";
+import ProductItem from "@/app/ProductItem";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
