@@ -3,9 +3,13 @@
 import CustomButton from "@/components/custom/CustomButton";
 import CustomImage from "@/components/custom/CustomImage";
 import { Divider } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProductDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="layout-container">
       <div className="max-w-[1100px] mx-auto max-md:flex-col flex my-[2rem] gap-[1rem] sm:gap-[2rem]">

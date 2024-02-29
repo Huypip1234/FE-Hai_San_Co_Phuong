@@ -17,6 +17,8 @@ export default function Home() {
       /* easing: "ease-in-sine", */
       once: true,
     });
+
+    window.scrollTo(0, 0);
   }, []);
 
   return (
