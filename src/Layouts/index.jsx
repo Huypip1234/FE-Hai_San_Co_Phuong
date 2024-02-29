@@ -27,15 +27,15 @@ const Layout = ({ children }) => {
     } else {
       setCurrentLayout(
         <>
-          {isMounted && (
-            <CustomImage
-              src="/images/call.gif"
-              width={isMobile ? 70 : 100}
-              height={isMobile ? 70 : 100}
-              alt="call"
-              className="fixed bottom-[0.5rem] sm:bottom-[1rem] right-[0.5rem] sm:right-[1rem] cursor-pointer z-[10]"
-            />
-          )}
+          {/* {isMounted && ( */}
+          <CustomImage
+            src="/images/call.gif"
+            width={isMobile ? 70 : 100}
+            height={isMobile ? 70 : 100}
+            alt="call"
+            className="fixed bottom-[0.5rem] sm:bottom-[1rem] right-[0.5rem] sm:right-[1rem] cursor-pointer z-[10]"
+          />
+          {/*  )} */}
           <Header />
           {children}
           <Footer />

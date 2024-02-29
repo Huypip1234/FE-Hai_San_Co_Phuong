@@ -2,12 +2,12 @@
 
 import CustomButton from "@/components/custom/CustomButton";
 import star from "../../../../public/images/star.png";
-import { Divider } from "antd";
 import React from "react";
 import ProductItem from "./ProductItem";
 import Link from "next/link";
 import CustomImage from "@/components/custom/CustomImage";
 import CustomConfirm from "@/components/custom/CustomConfirm";
+import CustomSearch from "@/components/custom/CustomSearch";
 
 const DashBoard = () => {
   return (
@@ -19,17 +19,17 @@ const DashBoard = () => {
             alt="star"
             className="w-[5.5rem] mx-auto mb-[-0.5rem]"
           />
-          <h1 className="text-primary font-[700] text-[18px] sm:text-[24px] stroke-slate-50">
+          <h1 className="text-primary font-[700] text-[18px] stroke-slate-50">
             Hải Sản Cô Phương
           </h1>
         </Link>
-        <h2 className="text-secondary text-[28px] sm:text-[42px] font-[700] uppercase">
+        <h2 className="text-secondary text-[28px] font-[700] uppercase">
           Trang quản lý
         </h2>
       </div>
 
       <div className="mt-[1rem] flex justify-between items-center">
-        <CustomButton type="primary" className="bg-primary">
+        <CustomButton type="primary" size="middle" className="bg-primary">
           Thêm sản phẩm
         </CustomButton>
         <CustomConfirm
@@ -46,8 +46,17 @@ const DashBoard = () => {
           </CustomButton>
         </CustomConfirm>
       </div>
-      <Divider />
-      <div className="flex flex-col gap-[1rem]">
+      {/*  <Divider /> */}
+
+      <div className="sticky shadow-md mx-[-16px] mt-[0.5rem] p-[16px] top-[0rem] py-[0.6rem] bg-white z-[99]">
+        <CustomSearch
+          size="middle"
+          placeholder="Bạn đang tìm gì?"
+          enterButton
+        />
+      </div>
+
+      <div className="flex flex-col gap-[1rem] mt-[1.5rem]">
         {[...new Array(10)].map((_item, index) => (
           <ProductItem key={index} />
         ))}
