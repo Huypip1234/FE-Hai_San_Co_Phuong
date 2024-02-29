@@ -1,8 +1,12 @@
 import { Button } from "antd";
 import React from "react";
 
-const CustomButton = ({ children, ...props }) => {
-  return <Button {...props}>{children}</Button>;
+const CustomButton = ({ size = "large", children, ...props }) => {
+  return (
+    <Button size={size} {...props}>
+      {children}
+    </Button>
+  );
 };
 
 export default CustomButton;

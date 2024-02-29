@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import "@/styles/custom/antd-custom.css";
 import { ConfigProvider } from "antd";
-import Layout from "@/components/Layout";
+import Layout from "@/Layouts";
 
 export const metadata = {
   title: "Hải Sản Cô Phương",

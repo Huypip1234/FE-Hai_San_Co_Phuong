@@ -1,6 +1,7 @@
 import useMounted from "@/hook/useMounted";
 import React from "react";
 import { FacebookFilled, TikTokFilled } from "@ant-design/icons";
+import Link from "next/link";
 
 const Footer = () => {
   const { isMounted } = useMounted();
@@ -9,13 +10,14 @@ const Footer = () => {
       <div className="layout-container py-[3rem]">
         <div className="grid grid-cols-1 gap-[1rem] sm:grid-cols-2 items-center">
           <div>
-            <h3 className="text-primary font-[700] text-[18px] sm:text-[24px]">
+            <h1 className="text-primary font-[700] text-[18px] sm:text-[24px]">
               Hải Sản Cô Phương
-            </h3>
+            </h1>
             <div className="mt-[0.5rem] flex flex-col gap-[0.5rem]">
               <p className=" text-[14px] sm:text-[16px]">
                 <span className="font-[500]">Địa chỉ:</span> Tổ 6A, khu 7,
-                phường Cao Xanh, thành phố Hạ Long, tỉnh Quảng Ninh.
+                phường Cao Xanh, thành phố Hạ Long, tỉnh{" "}
+                <Link href="/admin">Quảng Ninh.</Link>
               </p>
               <p className=" text-[14px] sm:text-[16px]">
                 <span className="font-[500]">Số điện thoại:</span> 0387635874 -

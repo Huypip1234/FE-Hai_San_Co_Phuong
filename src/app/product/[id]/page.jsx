@@ -29,7 +29,7 @@ const ProductDetail = () => {
             300,000đ/kg
           </p>
           <Divider />
-          <CustomButton type="primary" size="large" className="bg-primary">
+          <CustomButton type="primary" className="bg-primary">
             Liên hệ: 0387635874
           </CustomButton>
           <Divider />

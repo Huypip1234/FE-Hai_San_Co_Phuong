@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import CustomSearch from "./custom/CustomSearch";
+import CustomSearch from "../components/custom/CustomSearch";
 import Link from "next/link";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import CustomImage from "./custom/CustomImage";
+import CustomImage from "../components/custom/CustomImage";
 import star from "../../public/images/star.png";
 
 const Header = () => {
