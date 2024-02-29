@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next", "prettier"],
+  "rules": {
+    "no-unused-vars": "error",
+    "semi": "error",
+    "quotes": ["error", "double"],
+    "comma-dangle": ["error", "always-multiline"],
+    "no-undef": "error"
+  }
 }

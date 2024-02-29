@@ -1,6 +1,4 @@
 import React from "react";
-import CustomImage from "./custom/CustomImage";
-import { defaultImage } from "@/constants";
 
 const Loading = () => {
   return (
