@@ -15,6 +15,8 @@ import React, { useState } from "react";
 import star from "../../../../public/images/star.png";
 import CustomUpload from "@/components/custom/CustomUpload";
 import { toastError } from "@/utils/toast";
+import { InputNumber } from "antd";
+import CustomInputNumber from "@/components/custom/CustomInputNumber";
 
 const Create = () => {
   const [loading, setLoading] = useState(false);
@@ -140,9 +142,14 @@ const Create = () => {
               },
             ]}
           >
-            <CustomInput
+            <CustomInputNumber
               prefix={<DollarOutlined className="text-slate-500" />}
               placeholder="Nhập giá trị"
+              formatter={(value) =>
+                `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              }
+              parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+              className="w-full"
             />
           </CustomForm.Item>
           {/* Description */}
