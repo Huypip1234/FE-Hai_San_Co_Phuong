@@ -5,8 +5,10 @@ import Link from "next/link";
 import React from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   return (
     <>
       <div className="flex flex-col items-center">
@@ -35,7 +37,9 @@ const Header = () => {
         <CustomConfirm
           title="Đăng xuất"
           description="Bạn chắc chắn muốn đăng xuất?"
-          // onConfirm={confirm}
+          onConfirm={() => {
+            router.push("/admin");
+          }}
           // onCancel={cancel}
           cancelText="Không"
           okText="Có"

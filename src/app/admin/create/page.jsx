@@ -15,13 +15,14 @@ import React, { useState } from "react";
 import star from "../../../../public/images/star.png";
 import CustomUpload from "@/components/custom/CustomUpload";
 import { toastError } from "@/utils/toast";
-import { InputNumber } from "antd";
 import CustomInputNumber from "@/components/custom/CustomInputNumber";
 
 const Create = () => {
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading] = useState(false);
 
   const [urlImage, setUrlImage] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [fileList, setFileList] = useState([]);
 
   /* before upload */
