@@ -51,7 +51,7 @@ const Header = () => {
       <div className="sticky shadow-md mx-[-16px] mt-[0.5rem] p-[16px] top-[0rem] py-[0.6rem] bg-white z-[99]">
         <CustomInput.Search
           size="large"
-          placeholder="Bạn đang tìm gì?"
+          placeholder="Đang tìm gì?"
           enterButton
         />
       </div>
