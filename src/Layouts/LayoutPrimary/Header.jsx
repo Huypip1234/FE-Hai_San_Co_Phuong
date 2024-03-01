@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import CustomSearch from "../components/custom/CustomSearch";
 import Link from "next/link";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import CustomImage from "../components/custom/CustomImage";
-import star from "../../public/images/star.png";
+import CustomImage from "../../components/custom/CustomImage";
+import star from "../../../public/images/star.png";
+import CustomInput from "@/components/custom/CustomInput";
 
 const Header = () => {
   const [isShowSearch, setIsShowSearch] = useState(false);
@@ -36,7 +36,7 @@ const Header = () => {
             !isShowSearch && "max-sm:hidden"
           } max-sm:w-full flex items-center gap-[0.5rem]`}
         >
-          <CustomSearch
+          <CustomInput.Search
             size="large"
             placeholder="Bạn đang tìm gì?"
             enterButton

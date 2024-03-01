@@ -7,7 +7,7 @@ const ProductItem = ({ ...props }) => {
     <div {...props}>
       <Link href={`/product/${1}`}>
         <div className=" group rounded-lg">
-          <div className="relative w-full aspect-square overflow-hidden rounded-t-lg border-[2px] border-secondary">
+          <div className="relative w-full aspect-square overflow-hidden rounded-t-lg border-[1px] border-secondary">
             <CustomImage
               src="/images/test.jpg"
               alt="product"

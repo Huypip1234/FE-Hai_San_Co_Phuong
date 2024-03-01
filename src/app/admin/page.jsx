@@ -3,12 +3,12 @@ import CustomImage from "@/components/custom/CustomImage";
 import Link from "next/link";
 import React from "react";
 import star from "../../../public/images/star.png";
-import { Form } from "antd";
 import CustomInput from "@/components/custom/CustomInput";
 import CustomButton from "@/components/custom/CustomButton";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { toastSuccess } from "@/utils/toast";
+import CustomForm from "@/components/custom/CustomForm";
 
 const Admin = () => {
   const router = useRouter();
@@ -36,19 +36,19 @@ const Admin = () => {
       </div>
 
       <div className="mt-[2rem] w-full">
-        <Form
+        <CustomForm
           onFinish={onLogin}
           layout="vertical"
-          name="add_project"
+          name="login"
           className="w-full"
         >
-          <Form.Item
+          <CustomForm.Item
             label="Họ và tên"
             name="userName"
             rules={[
               {
                 required: true,
-                message: "Chỗ này chưa được nhập!",
+                message: "Chỗ này chưa nhập!",
               },
             ]}
           >
@@ -56,23 +56,23 @@ const Admin = () => {
               prefix={<UserOutlined className="text-slate-500" />}
               placeholder="Nhập họ và tên"
             />
-          </Form.Item>
-          <Form.Item
+          </CustomForm.Item>
+          <CustomForm.Item
             label="Số bí mật"
             name="password"
             rules={[
               {
                 required: true,
-                message: "Chỗ này chưa được nhập!",
+                message: "Chỗ này chưa nhập!",
               },
             ]}
           >
-            <CustomInput
+            <CustomInput.Password
               prefix={<LockOutlined className="text-slate-500" />}
               placeholder="Nhập số bí mật"
             />
-          </Form.Item>
-          <Form.Item className="flex justify-center">
+          </CustomForm.Item>
+          <CustomForm.Item className="flex justify-center">
             <CustomButton
               htmlType="submit"
               className="bg-primary"
@@ -80,8 +80,8 @@ const Admin = () => {
             >
               Vào trong
             </CustomButton>
-          </Form.Item>
-        </Form>
+          </CustomForm.Item>
+        </CustomForm>
       </div>
     </div>
   );
