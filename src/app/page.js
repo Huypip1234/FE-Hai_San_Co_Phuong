@@ -8,7 +8,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import CustomPagination from "@/components/custom/CustomPagination";
-import { useMediaQuery } from "react-responsive";
+import useResponsive from "@/hook/useResponsive";
 
 export default function Home() {
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
-  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
+  const { width } = useResponsive();
 
   return (
     <div className="layout-container  mt-[1rem]">
@@ -43,7 +43,7 @@ export default function Home() {
       <div className="max-w-[1100px] mx-auto my-[2rem] ">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1rem] sm:gap-[1.5rem] ">
           {[...new Array(24)].map((_item, index) =>
-            isMobile && index < 4 ? (
+            width < 640 && index < 4 ? (
               <ProductItem key={index} />
             ) : (
               <ProductItem
