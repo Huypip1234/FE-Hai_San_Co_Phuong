@@ -49,11 +49,7 @@ const DashBoard = () => {
       {/*  <Divider /> */}
 
       <div className="sticky shadow-md mx-[-16px] mt-[0.5rem] p-[16px] top-[0rem] py-[0.6rem] bg-white z-[99]">
-        <CustomSearch
-          size="middle"
-          placeholder="Bạn đang tìm gì?"
-          enterButton
-        />
+        <CustomSearch size="large" placeholder="Bạn đang tìm gì?" enterButton />
       </div>
 
       <div className="flex flex-col gap-[1rem] mt-[1.5rem]">
