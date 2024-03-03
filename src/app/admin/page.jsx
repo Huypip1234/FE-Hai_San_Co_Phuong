@@ -1,20 +1,38 @@
 "use client";
-import CustomImage from "@/components/custom/CustomImage";
-import Link from "next/link";
 import React from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
-import CustomButton from "@/components/custom/CustomButton";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { toastSuccess } from "@/utils/toast";
+import { toastError, toastSuccess } from "@/utils/toast";
 import CustomForm from "@/components/custom/CustomForm";
+import { login } from "@/api/auth";
+import { useStore } from "@/context";
+import Link from "next/link";
+import CustomImage from "@/components/custom/CustomImage";
+import CustomButton from "@/components/custom/CustomButton";
 
 const Admin = () => {
   const router = useRouter();
-  const onLogin = () => {
-    router.push("/admin/dashboard");
-    toastSuccess("Đăng nhập thành công!");
+  const { setUserLoginData } = useStore();
+
+  const onLogin = async (data) => {
+    const loginData = {
+      userName: data.userName,
+      password: data.password,
+    };
+    try {
+      const response = await login(loginData);
+      console.log(response);
+      setUserLoginData(response.data);
+      localStorage.setItem("token", response?.data?.token);
+      router.push("/admin/dashboard");
+      toastSuccess(response.data.message);
+    } catch (err) {
+      err.response && err.response.status != 404
+        ? toastError(err.response.data.message)
+        : toastError(err.message);
+    }
   };
 
   return (
