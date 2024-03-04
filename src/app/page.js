@@ -9,6 +9,8 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 import CustomPagination from "@/components/custom/CustomPagination";
 import useResponsive from "@/hook/useResponsive";
+import useMounted from "@/hook/useMounted";
+import { useStore } from "@/context";
 
 export default function Home() {
   useEffect(() => {
@@ -23,6 +25,14 @@ export default function Home() {
   }, []);
 
   const { width } = useResponsive();
+  const { allProduct, fetchAllProduct } = useStore();
+  const { isMounted } = useMounted();
+
+  useEffect(() => {
+    if (allProduct.length === 0) {
+      isMounted && fetchAllProduct();
+    }
+  }, [isMounted]);
 
   return (
     <div className="layout-container  mt-[1rem]">
@@ -42,15 +52,16 @@ export default function Home() {
 
       <div className="max-w-[1100px] mx-auto my-[2rem] ">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1rem] sm:gap-[1.5rem] ">
-          {[...new Array(24)].map((_item, index) =>
+          {allProduct?.map((item, index) =>
             width < 640 && index < 4 ? (
-              <ProductItem key={index} />
+              <ProductItem data={item} key={item?._id} />
             ) : (
               <ProductItem
                 data-aos="zoom-in"
                 data-aos-duration="1000"
                 data-aos-delay="200"
-                key={index}
+                data={item}
+                key={item?._id}
               />
             )
           )}

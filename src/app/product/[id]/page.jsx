@@ -2,13 +2,30 @@
 
 import CustomButton from "@/components/custom/CustomButton";
 import CustomImage from "@/components/custom/CustomImage";
+import { useStore } from "@/context";
+import useMounted from "@/hook/useMounted";
 import { Divider } from "antd";
-import React, { useEffect } from "react";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const ProductDetail = () => {
+  const { allProduct, fetchAllProduct } = useStore();
+  const { isMounted } = useMounted();
+  const [currentProduct, setCurrentProduct] = useState({});
+  const param = useParams();
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (allProduct.length === 0) {
+      isMounted && fetchAllProduct();
+    }
+  }, [isMounted]);
+
+  useEffect(() => {
+    const id = param.id;
+    const product = allProduct.find((item) => item._id === id);
+    setCurrentProduct(product);
+  }, [param, allProduct]);
 
   return (
     <div className="layout-container">
@@ -18,7 +35,7 @@ const ProductDetail = () => {
             <CustomImage
               fill
               alt="product"
-              src="/images/test.jpg"
+              src={currentProduct?.image}
               className="object-cover object-center"
             />
           </div>
@@ -26,11 +43,11 @@ const ProductDetail = () => {
 
         <div className="md:basis-1/2">
           <h2 className="text-secondary text-[24px] sm:text-[32px] font-[700]">
-            Mực khô vân đồn
+            {currentProduct?.title}
           </h2>
 
           <p className="text-primary font-[500] text-[18px] sm:text-[24px]">
-            300,000đ/kg
+            {currentProduct?.price}đ/kg
           </p>
           <Divider />
           <CustomButton type="primary" className="bg-primary">
@@ -42,10 +59,7 @@ const ProductDetail = () => {
               Mô tả:{" "}
             </p>
             <p className="mt-[0.5rem] max-sm:text-[14px] text-slate-500">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
-              consectetur excepturi explicabo minima pariatur nobis maxime
-              tenetur, doloribus, nihil provident deserunt odit corporis magnam,
-              harum aut! Voluptatum architecto repellendus voluptas.
+              {currentProduct?.description}
             </p>
           </div>
         </div>
