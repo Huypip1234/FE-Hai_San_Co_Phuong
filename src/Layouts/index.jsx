@@ -15,12 +15,9 @@ const Layout = ({ children }) => {
   );
 
   useEffect(() => {
-    if (pathName.includes("/admin/dashboard")) {
+    if (pathName === "/admin/dashboard") {
       setCurrentLayout(<LayoutAdmin>{children}</LayoutAdmin>);
-    } else if (
-      pathName.includes("/admin") ||
-      pathName.includes("/admin/create")
-    ) {
+    } else if (pathName === "/admin" || pathName === "/admin/create") {
       setCurrentLayout(children);
     } else {
       setCurrentLayout(<LayoutPrimary>{children}</LayoutPrimary>);

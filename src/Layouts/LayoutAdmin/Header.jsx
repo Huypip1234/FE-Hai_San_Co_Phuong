@@ -6,9 +6,15 @@ import React from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
 import { useRouter } from "next/navigation";
+import { toastSuccess } from "@/utils/toast";
 
 const Header = () => {
   const router = useRouter();
+  const onLogout = () => {
+    router.push("/admin");
+    localStorage.removeItem("token");
+    toastSuccess("Đăng xuất thành công");
+  };
   return (
     <>
       <div className="flex flex-col items-center">
@@ -37,9 +43,7 @@ const Header = () => {
         <CustomConfirm
           title="Đăng xuất"
           description="Bạn chắc chắn muốn đăng xuất?"
-          onConfirm={() => {
-            router.push("/admin");
-          }}
+          onConfirm={onLogout}
           // onCancel={cancel}
           cancelText="Không"
           okText="Có"

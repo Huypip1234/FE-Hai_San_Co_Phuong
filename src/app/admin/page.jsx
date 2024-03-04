@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -23,9 +23,8 @@ const Admin = () => {
     };
     try {
       const response = await login(loginData);
-      console.log(response);
-      setUserLoginData(response.data);
-      localStorage.setItem("token", response?.data?.token);
+      setUserLoginData(response?.data?.data);
+      localStorage.setItem("token", response?.data?.data?.token);
       router.push("/admin/dashboard");
       toastSuccess(response.data.message);
     } catch (err) {
@@ -34,6 +33,10 @@ const Admin = () => {
         : toastError(err.message);
     }
   };
+
+  useEffect(() => {
+    !!localStorage.getItem("token") && router.push("/admin/dashboard");
+  }, []);
 
   return (
     <div className="admin-container sm:h-screen flex flex-col items-center justify-center py-[1rem]">
