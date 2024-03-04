@@ -4,28 +4,24 @@ import CustomButton from "@/components/custom/CustomButton";
 import CustomForm from "@/components/custom/CustomForm";
 import CustomImage from "@/components/custom/CustomImage";
 import CustomInput from "@/components/custom/CustomInput";
-import {
-  DollarOutlined,
-  EditOutlined,
-  LoadingOutlined,
-  PlusOutlined,
-} from "@ant-design/icons";
+import { DollarOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import star from "../../../../public/images/star.png";
 import CustomUpload from "@/components/custom/CustomUpload";
-import { toastError } from "@/utils/toast";
+import { toastError, toastSuccess } from "@/utils/toast";
 import CustomInputNumber from "@/components/custom/CustomInputNumber";
 import { useRouter } from "next/navigation";
+import { addProduct } from "@/api/product";
+import { useStore } from "@/context";
+import useMounted from "@/hook/useMounted";
 
 const Create = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [loading, setLoading] = useState(false);
-
   const [urlImage, setUrlImage] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [fileList, setFileList] = useState([]);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const { fetchAllProduct } = useStore();
+  const { isMounted } = useMounted();
 
   /* before upload */
   const beforeUpload = (file) => {
@@ -43,25 +39,53 @@ const Create = () => {
     return isJpgOrPng && isLt2M;
   };
 
+  // convert base64
+  const convertBase64 = (file) => {
+    // eslint-disable-next-line no-undef
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
   /* on change */
-  const handleUpload = async ({ fileList: newFileList }) => {
-    setFileList(newFileList);
-    if (newFileList.length > 0) {
-      if (
-        newFileList[newFileList.length - 1].originFileObj &&
-        newFileList[newFileList.length - 1].status === "uploading"
-      ) {
-        setUrlImage(
-          URL.createObjectURL(newFileList[newFileList.length - 1].originFileObj)
-        );
-      }
-    }
+  const handleUpload = async (data) => {
+    const base64 = await convertBase64(data?.file?.originFileObj);
+    setUrlImage(base64);
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     !localStorage.getItem("token") && router.push("/admin");
   }, []);
+
+  const onSubmit = async (inputData) => {
+    setLoading(true);
+    const data = {
+      title: inputData.title,
+      price: inputData.price,
+      description: inputData.description,
+      image: urlImage,
+    };
+    try {
+      const response = await addProduct(data);
+      toastSuccess(response?.data?.message);
+      isMounted && fetchAllProduct();
+      router.push("/admin/dashboard");
+      setLoading(false);
+    } catch (err) {
+      err.response && err.response.status != 404
+        ? toastError(err.response.data.message)
+        : toastError(err.message);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="admin-container sm:h-screen flex flex-col items-center justify-center py-[1rem]">
@@ -84,7 +108,7 @@ const Create = () => {
       <div className="mt-[2rem] w-full">
         <CustomForm
           disabled={false}
-          // onFinish={onLogin}
+          onFinish={onSubmit}
           layout="vertical"
           name="create"
           className="w-full"
@@ -115,17 +139,25 @@ const Create = () => {
                 />
               ) : (
                 <button type="button">
-                  {loading ? <LoadingOutlined /> : <PlusOutlined />}
+                  <PlusOutlined />
                   <p>Chọn hình ảnh</p>
                 </button>
               )}
             </CustomUpload>
           </CustomForm.Item>
-          {/* Name */}
+          {/* title */}
           <CustomForm.Item
             label="Tên mặt hàng"
-            name="name"
+            name="title"
             rules={[
+              {
+                min: 4,
+                message: "Ít nhất 4 ký tự!",
+              },
+              {
+                max: 20,
+                message: "Nhiều nhất 20 ký tự!",
+              },
               {
                 required: true,
                 message: "Chỗ này chưa nhập!",
@@ -166,6 +198,14 @@ const Create = () => {
             name="description"
             rules={[
               {
+                min: 4,
+                message: "Ít nhất 4 ký tự!",
+              },
+              {
+                max: 1000,
+                message: "Nhiều nhất 1000 ký tự!",
+              },
+              {
                 required: true,
                 message: "Chỗ này chưa nhập!",
               },
@@ -181,6 +221,7 @@ const Create = () => {
           {/* Submit button */}
           <CustomForm.Item className="flex justify-center">
             <CustomButton
+              loading={loading}
               htmlType="submit"
               className="bg-primary"
               type="primary"
