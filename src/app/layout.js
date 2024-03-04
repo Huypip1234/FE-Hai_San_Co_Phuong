@@ -4,6 +4,8 @@ import { ConfigProvider } from "antd";
 import Layout from "@/Layouts";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import StoreProvider from "@/context";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Hải Sản Cô Phương",
@@ -25,6 +27,10 @@ export default function RootLayout({ children }) {
             <body>
               <Layout>{children}</Layout>
             </body>
+            {/* Vercel Speed Insights */}
+            <SpeedInsights />
+            {/* Vercel Analytics */}
+            <Analytics />
             {/* Google Analytics */}
             <GoogleAnalytics gaId="G-5JCE19WNL6" />
           </html>
