@@ -7,7 +7,6 @@ import ProductItem from "@/app/ProductItem";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
-import CustomPagination from "@/components/custom/CustomPagination";
 import useResponsive from "@/hook/useResponsive";
 import useMounted from "@/hook/useMounted";
 import { useStore } from "@/context";
@@ -66,9 +65,9 @@ export default function Home() {
             )
           )}
         </div>
-        <div className="flex justify-end mt-[2rem]">
+        {/* <div className="flex justify-end mt-[2rem]">
           <CustomPagination defaultCurrent={1} total={50} responsive />
-        </div>
+        </div> */}
       </div>
     </div>
   );

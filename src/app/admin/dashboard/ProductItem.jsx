@@ -6,6 +6,7 @@ import { deleteProduct } from "@/api/product";
 import { toastError, toastSuccess } from "@/utils/toast";
 import useMounted from "@/hook/useMounted";
 import { useStore } from "@/context";
+import Link from "next/link";
 
 const ProductItem = ({ data }) => {
   const { isMounted } = useMounted();
@@ -37,7 +38,11 @@ const ProductItem = ({ data }) => {
         />
       </div>
       <div className="col-span-4">
-        <h2 className="text-secondary text-[16px] font-[700]">{data?.title}</h2>
+        <Link href={`/admin/edit/${data?._id}`}>
+          <h2 className="text-secondary text-[16px] font-[700]">
+            {data?.title}
+          </h2>
+        </Link>
         <p className="text-primary font-[500] text-[16px] ">
           {data?.price}đ/kg
         </p>

@@ -11,3 +11,7 @@ export const addProduct = async (data) => {
 export const deleteProduct = async (id) => {
   return await axiosClient.delete(`/product/delete/${id}`);
 };
+
+export const editProduct = async (data) => {
+  return await axiosClient.patch("/product/edit", data);
+};

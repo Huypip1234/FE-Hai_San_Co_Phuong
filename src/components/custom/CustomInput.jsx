@@ -15,8 +15,12 @@ const SearchInput = ({ className, ...props }) => (
 );
 CustomInput.Search = SearchInput;
 
-const TextAreaInput = ({ className, ...props }) => (
-  <Input.TextArea className={"custom-textarea " + className} {...props} />
+const TextAreaInput = ({ className, size = "large", ...props }) => (
+  <Input.TextArea
+    size={size}
+    className={"custom-textarea " + className}
+    {...props}
+  />
 );
 CustomInput.TextArea = TextAreaInput;
 

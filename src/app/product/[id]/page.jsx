@@ -58,9 +58,12 @@ const ProductDetail = () => {
             <p className="text-secondary max-sm:text-[16px] font-[600]">
               Mô tả:{" "}
             </p>
-            <p className="mt-[0.5rem] max-sm:text-[14px] text-slate-500">
-              {currentProduct?.description}
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: currentProduct?.description?.replace(/\n/g, "<br/>"),
+              }}
+              className="mt-[0.5rem] max-sm:text-[14px] text-slate-500"
+            />
           </div>
         </div>
       </div>
