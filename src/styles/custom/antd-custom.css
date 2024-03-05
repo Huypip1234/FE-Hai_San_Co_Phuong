@@ -5,3 +5,8 @@
 .custom-search .ant-input-group-addon {
   @apply bg-primary;
 }
+
+.skeleton-image span {
+  width: 100% !important;
+  height: 100% !important;
+}

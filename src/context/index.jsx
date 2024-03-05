@@ -13,16 +13,20 @@ const StoreProvider = ({ children }) => {
   const [userLoginData, setUserLoginData] = useState(true);
   const [allProduct, setAllProduct] = useState([]);
   const [allProductClone, setAllProductClone] = useState([]);
+  const [isLoadingAllProduct, setIsLoadingAllproduct] = useState();
 
   const fetchAllProduct = async () => {
+    setIsLoadingAllproduct(true);
     try {
       const response = await getAllProduct();
       setAllProduct(response?.data?.data);
       setAllProductClone(response?.data?.data);
+      setIsLoadingAllproduct(false);
     } catch (err) {
       err.response && err.response.status != 404
         ? toastError(err.response.data.message)
         : toastError(err.message);
+      setIsLoadingAllproduct(false);
     }
   };
   const handleSearch = (value) => {
@@ -43,6 +47,7 @@ const StoreProvider = ({ children }) => {
         fetchAllProduct,
         handleSearch,
         allProductClone,
+        isLoadingAllProduct,
       }}
     >
       {children}
