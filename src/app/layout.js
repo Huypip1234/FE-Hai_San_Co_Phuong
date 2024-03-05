@@ -26,13 +26,13 @@ export default function RootLayout({ children }) {
           <html lang="en">
             <body>
               <Layout>{children}</Layout>
+              {/* Vercel Speed Insights */}
+              <SpeedInsights />
+              {/* Vercel Analytics */}
+              <Analytics />
+              {/* Google Analytics */}
+              <GoogleAnalytics gaId="G-5JCE19WNL6" />
             </body>
-            {/* Vercel Speed Insights */}
-            <SpeedInsights />
-            {/* Vercel Analytics */}
-            <Analytics />
-            {/* Google Analytics */}
-            <GoogleAnalytics gaId="G-5JCE19WNL6" />
           </html>
         </ConfigProvider>
       </StoreProvider>
