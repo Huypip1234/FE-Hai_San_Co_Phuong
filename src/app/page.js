@@ -12,6 +12,10 @@ import useMounted from "@/hook/useMounted";
 import { useStore } from "@/context";
 
 export default function Home() {
+  const { width } = useResponsive();
+  const { allProduct, fetchAllProduct, handleSearch } = useStore();
+  const { isMounted } = useMounted();
+
   useEffect(() => {
     Aos.init({
       duration: 1000,
@@ -19,13 +23,9 @@ export default function Home() {
       /* easing: "ease-in-sine", */
       once: true,
     });
-
     window.scrollTo(0, 0);
+    handleSearch("");
   }, []);
-
-  const { width } = useResponsive();
-  const { allProduct, fetchAllProduct } = useStore();
-  const { isMounted } = useMounted();
 
   useEffect(() => {
     if (allProduct.length === 0) {

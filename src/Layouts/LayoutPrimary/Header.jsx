@@ -4,9 +4,11 @@ import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import CustomImage from "../../components/custom/CustomImage";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
+import { useStore } from "@/context";
 
 const Header = () => {
   const [isShowSearch, setIsShowSearch] = useState(false);
+  const { handleSearch } = useStore();
   return (
     <div
       className="sticky top-0 z-50 bg-white shadow-lg py-[0.5rem]
@@ -40,6 +42,7 @@ const Header = () => {
             size="large"
             placeholder="Bạn đang tìm gì?"
             enterButton
+            onSearch={handleSearch}
           />
           <CloseOutlined
             onClick={() => {

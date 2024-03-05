@@ -2,19 +2,27 @@ import CustomButton from "@/components/custom/CustomButton";
 import CustomConfirm from "@/components/custom/CustomConfirm";
 import CustomImage from "@/components/custom/CustomImage";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
 import { useRouter } from "next/navigation";
 import { toastSuccess } from "@/utils/toast";
+import { useStore } from "@/context";
 
 const Header = () => {
   const router = useRouter();
+  const { handleSearch } = useStore();
+
   const onLogout = () => {
     router.push("/admin");
     localStorage.removeItem("token");
     toastSuccess("Đăng xuất thành công");
   };
+
+  useEffect(() => {
+    handleSearch("");
+  }, []);
+
   return (
     <>
       <div className="flex flex-col items-center">
@@ -61,6 +69,7 @@ const Header = () => {
           size="large"
           placeholder="Đang tìm gì?"
           enterButton
+          onSearch={handleSearch}
         />
       </div>
     </>

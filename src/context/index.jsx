@@ -12,15 +12,25 @@ export const useStore = () => useContext(storeContext);
 const StoreProvider = ({ children }) => {
   const [userLoginData, setUserLoginData] = useState(true);
   const [allProduct, setAllProduct] = useState([]);
+  const [allProductClone, setAllProductClone] = useState([]);
+
   const fetchAllProduct = async () => {
     try {
       const response = await getAllProduct();
       setAllProduct(response?.data?.data);
+      setAllProductClone(response?.data?.data);
     } catch (err) {
       err.response && err.response.status != 404
         ? toastError(err.response.data.message)
         : toastError(err.message);
     }
+  };
+  const handleSearch = (value) => {
+    console.log(value);
+    const filteredData = allProductClone.filter((item) =>
+      item.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setAllProduct(filteredData);
   };
 
   return (
@@ -31,6 +41,8 @@ const StoreProvider = ({ children }) => {
         allProduct,
         setAllProduct,
         fetchAllProduct,
+        handleSearch,
+        allProductClone,
       }}
     >
       {children}

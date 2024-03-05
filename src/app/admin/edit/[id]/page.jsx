@@ -20,7 +20,7 @@ const Edit = () => {
   const [urlImage, setUrlImage] = useState(null);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const { fetchAllProduct, allProduct } = useStore();
+  const { fetchAllProduct, allProduct, allProductClone } = useStore();
   const { isMounted } = useMounted();
   const [currentProduct, setCurrentProduct] = useState({});
   const param = useParams();
@@ -34,9 +34,9 @@ const Edit = () => {
 
   useEffect(() => {
     const id = param.id;
-    const product = allProduct.find((item) => item._id === id);
+    const product = allProductClone.find((item) => item._id === id);
     setCurrentProduct(product);
-  }, [param, allProduct]);
+  }, [param, allProductClone]);
 
   useEffect(() => {
     console.log(currentProduct);

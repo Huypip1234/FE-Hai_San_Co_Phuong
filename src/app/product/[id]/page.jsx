@@ -9,7 +9,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ProductDetail = () => {
-  const { allProduct, fetchAllProduct } = useStore();
+  const { allProduct, fetchAllProduct, allProductClone } = useStore();
   const { isMounted } = useMounted();
   const [currentProduct, setCurrentProduct] = useState({});
   const param = useParams();
@@ -23,9 +23,9 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const id = param.id;
-    const product = allProduct.find((item) => item._id === id);
+    const product = allProductClone.find((item) => item._id === id);
     setCurrentProduct(product);
-  }, [param, allProduct]);
+  }, [param, allProductClone]);
 
   return (
     <div className="layout-container">
