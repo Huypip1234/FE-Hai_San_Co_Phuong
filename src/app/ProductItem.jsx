@@ -21,7 +21,8 @@ const ProductItem = ({ data, ...props }) => {
               {data?.title}
             </h2>
             <p className="text-[14px] mt-[0.5rem] font-[500] sm:text-[16px] text-primary">
-              {data?.price}đ/kg
+              {data?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+              đ/kg
             </p>
           </div>
         </div>

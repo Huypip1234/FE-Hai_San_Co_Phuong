@@ -8,13 +8,16 @@ const LayoutPrimary = ({ children }) => {
   const { width } = useResponsive();
   return (
     <>
-      <CustomImage
-        src="/images/call.gif"
-        width={width < 640 ? 70 : 100}
-        height={width < 640 ? 70 : 100}
-        alt="call"
-        className="fixed bottom-[0.5rem] sm:bottom-[1rem] right-[0.5rem] sm:right-[1rem] cursor-pointer z-[10]"
-      />
+      <a href="tel:0387635874">
+        <CustomImage
+          src="/images/call.gif"
+          width={width < 640 ? 70 : 100}
+          height={width < 640 ? 70 : 100}
+          alt="call"
+          className="fixed bottom-[0.5rem] sm:bottom-[1rem] right-[0.5rem] sm:right-[1rem] cursor-pointer z-[10]"
+        />
+      </a>
+
       <Header />
       {children}
       <Footer />

@@ -4,9 +4,10 @@ import ProductItem from "./ProductItem";
 import { useStore } from "@/context";
 import useMounted from "@/hook/useMounted";
 import { useRouter } from "next/navigation";
+import ProductSkeletonAdmin from "@/components/custom/CustomSkeleton/ProductSkeletonAdmin";
 
 const DashBoard = () => {
-  const { allProduct, fetchAllProduct } = useStore();
+  const { allProduct, fetchAllProduct, isLoadingAllProduct } = useStore();
   const { isMounted } = useMounted();
   const router = useRouter();
 
@@ -23,9 +24,11 @@ const DashBoard = () => {
 
   return (
     <div className="flex flex-col gap-[1rem] mt-[1.5rem]">
-      {allProduct?.map((item) => (
-        <ProductItem data={item} key={item._id} />
-      ))}
+      {isLoadingAllProduct
+        ? [...new Array(4)].map((_item, index) => (
+            <ProductSkeletonAdmin key={index} />
+          ))
+        : allProduct?.map((item) => <ProductItem data={item} key={item._id} />)}
     </div>
   );
 };

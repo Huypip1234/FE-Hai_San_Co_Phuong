@@ -44,7 +44,7 @@ const ProductItem = ({ data }) => {
           </h2>
         </Link>
         <p className="text-primary font-[500] text-[16px] ">
-          {data?.price}đ/kg
+          {data?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}đ/kg
         </p>
       </div>
       <div className="col-span-2">

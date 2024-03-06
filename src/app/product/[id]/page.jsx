@@ -43,16 +43,21 @@ const ProductDetail = () => {
 
         <div className="md:basis-1/2">
           <h2 className="text-secondary text-[24px] sm:text-[32px] font-[700]">
-            {currentProduct?.title}
+            {currentProduct?.title || "--"}
           </h2>
 
           <p className="text-primary font-[500] text-[18px] sm:text-[24px]">
-            {currentProduct?.price}đ/kg
+            {currentProduct?.price
+              ?.toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",") || "--"}
+            đ/kg
           </p>
           <Divider />
-          <CustomButton type="primary" className="bg-primary">
-            Liên hệ: 0387635874
-          </CustomButton>
+          <a href="tel:0387635874">
+            <CustomButton type="primary" className="bg-primary">
+              Liên hệ: 0387635874
+            </CustomButton>
+          </a>
           <Divider />
           <div>
             <p className="text-secondary max-sm:text-[16px] font-[600]">
@@ -60,7 +65,8 @@ const ProductDetail = () => {
             </p>
             <div
               dangerouslySetInnerHTML={{
-                __html: currentProduct?.description?.replace(/\n/g, "<br/>"),
+                __html:
+                  currentProduct?.description?.replace(/\n/g, "<br/>") || "--",
               }}
               className="mt-[0.5rem] max-sm:text-[14px] text-slate-500"
             />
