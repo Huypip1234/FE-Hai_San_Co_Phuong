@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3003";
+const baseURL = "https://be-hai-san-co-phuong.onrender.com";
 
 export const getFromLocalStorage = (key) => {
   try {
