@@ -18,7 +18,7 @@ const StoreProvider = ({ children }) => {
   const [allProduct, setAllProduct] = useState([]);
   const [allProductClone, setAllProductClone] = useState([]);
   const [isLoadingAllProduct, setIsLoadingAllproduct] = useState();
-  const [noNeedReset, setNoNeedReset] = useState(false);
+  const [needReset, setNeedReset] = useState(true);
 
   const fetchAllProduct = async () => {
     setIsLoadingAllproduct(true);
@@ -36,7 +36,7 @@ const StoreProvider = ({ children }) => {
   };
   const handleSearch = (value) => {
     if (pathName.includes("product")) {
-      setNoNeedReset(true);
+      setNeedReset(false);
       router.push("/");
     }
     const filteredData = allProductClone.filter((item) =>
@@ -56,8 +56,8 @@ const StoreProvider = ({ children }) => {
         handleSearch,
         allProductClone,
         isLoadingAllProduct,
-        noNeedReset,
-        setNoNeedReset,
+        needReset,
+        setNeedReset,
       }}
     >
       {children}

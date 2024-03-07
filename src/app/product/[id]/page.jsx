@@ -42,7 +42,7 @@ const ProductDetail = () => {
         </div>
 
         <div className="md:basis-1/2">
-          <h2 className="text-secondary text-[24px] sm:text-[32px] font-[700]">
+          <h2 className="text-secondary text-[24px] sm:text-[32px] font-[700] break-all three_dot_2_line">
             {currentProduct?.title || "--"}
           </h2>
 

@@ -19,8 +19,9 @@ export default function Home() {
     fetchAllProduct,
     handleSearch,
     isLoadingAllProduct,
-    noNeedReset,
-    setNoNeedReset,
+    needReset,
+    setNeedReset,
+    allProductClone,
   } = useStore();
   const { isMounted } = useMounted();
 
@@ -32,16 +33,16 @@ export default function Home() {
       once: true,
     });
     window.scrollTo(0, 0);
+    if (needReset) {
+      handleSearch("");
+    } else {
+      setNeedReset(true);
+    }
   }, []);
 
   useEffect(() => {
-    if (allProduct.length === 0 && !noNeedReset) {
+    if (allProductClone.length === 0) {
       isMounted && fetchAllProduct();
-    }
-    if (!noNeedReset) {
-      handleSearch("");
-    } else {
-      setNoNeedReset(false);
     }
   }, [isMounted]);
 
@@ -67,7 +68,7 @@ export default function Home() {
             [...new Array(12)].map((_item, index) => (
               <ProductSkeleton key={index} />
             ))
-          ) : allProduct.length === 0 ? (
+          ) : allProduct?.length === 0 ? (
             <p>Không tìm thấy mặt hàng nào!</p>
           ) : (
             allProduct?.map((item, index) =>
