@@ -32,18 +32,18 @@ export default function Home() {
       once: true,
     });
     window.scrollTo(0, 0);
-    if (!noNeedReset) {
-      handleSearch("");
-    } else {
-      setNoNeedReset(false);
-    }
   }, []);
 
   useEffect(() => {
     if (allProduct.length === 0 && !noNeedReset) {
       isMounted && fetchAllProduct();
     }
-  }, [isMounted, noNeedReset]);
+    if (!noNeedReset) {
+      handleSearch("");
+    } else {
+      setNoNeedReset(false);
+    }
+  }, [isMounted]);
 
   return (
     <div className="layout-container  mt-[1rem]">
