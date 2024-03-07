@@ -14,8 +14,14 @@ import ProductSkeleton from "@/components/custom/CustomSkeleton/ProductSkeleton"
 
 export default function Home() {
   const { width } = useResponsive();
-  const { allProduct, fetchAllProduct, handleSearch, isLoadingAllProduct } =
-    useStore();
+  const {
+    allProduct,
+    fetchAllProduct,
+    handleSearch,
+    isLoadingAllProduct,
+    noNeedReset,
+    setNoNeedReset,
+  } = useStore();
   const { isMounted } = useMounted();
 
   useEffect(() => {
@@ -26,14 +32,18 @@ export default function Home() {
       once: true,
     });
     window.scrollTo(0, 0);
-    handleSearch("");
+    if (!noNeedReset) {
+      handleSearch("");
+    } else {
+      setNoNeedReset(false);
+    }
   }, []);
 
   useEffect(() => {
-    if (allProduct.length === 0) {
+    if (allProduct.length === 0 && !noNeedReset) {
       isMounted && fetchAllProduct();
     }
-  }, [isMounted]);
+  }, [isMounted, noNeedReset]);
 
   return (
     <div className="layout-container  mt-[1rem]">
@@ -53,23 +63,27 @@ export default function Home() {
 
       <div className="max-w-[1100px] mx-auto my-[2rem] ">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1rem] sm:gap-[1.5rem] ">
-          {isLoadingAllProduct
-            ? [...new Array(12)].map((_item, index) => (
-                <ProductSkeleton key={index} />
-              ))
-            : allProduct?.map((item, index) =>
-                width < 640 && index < 4 ? (
-                  <ProductItem data={item} key={item?._id} />
-                ) : (
-                  <ProductItem
-                    data-aos="zoom-in"
-                    data-aos-duration="1000"
-                    data-aos-delay="200"
-                    data={item}
-                    key={item?._id}
-                  />
-                )
-              )}
+          {isLoadingAllProduct ? (
+            [...new Array(12)].map((_item, index) => (
+              <ProductSkeleton key={index} />
+            ))
+          ) : allProduct.length === 0 ? (
+            <p>Không tìm thấy mặt hàng nào!</p>
+          ) : (
+            allProduct?.map((item, index) =>
+              width < 640 && index < 4 ? (
+                <ProductItem data={item} key={item?._id} />
+              ) : (
+                <ProductItem
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                  data={item}
+                  key={item?._id}
+                />
+              )
+            )
+          )}
         </div>
         {/* <div className="flex justify-end mt-[2rem]">
           <CustomPagination defaultCurrent={1} total={50} responsive />

@@ -2,7 +2,7 @@ import CustomButton from "@/components/custom/CustomButton";
 import CustomConfirm from "@/components/custom/CustomConfirm";
 import CustomImage from "@/components/custom/CustomImage";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 import star from "../../../public/images/star.png";
 import CustomInput from "@/components/custom/CustomInput";
 import { useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ import { useStore } from "@/context";
 
 const Header = () => {
   const router = useRouter();
+
   const { handleSearch } = useStore();
 
   const onLogout = () => {
@@ -18,10 +19,6 @@ const Header = () => {
     localStorage.removeItem("token");
     toastSuccess("Đăng xuất thành công");
   };
-
-  useEffect(() => {
-    handleSearch("");
-  }, []);
 
   return (
     <>

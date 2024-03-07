@@ -2,6 +2,7 @@
 
 import { getAllProduct } from "@/api/product";
 import { toastError } from "@/utils/toast";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useState } from "react";
 
 const storeContext = createContext();
@@ -10,10 +11,14 @@ const storeContext = createContext();
 export const useStore = () => useContext(storeContext);
 
 const StoreProvider = ({ children }) => {
+  const router = useRouter();
+  const pathName = usePathname();
+
   const [userLoginData, setUserLoginData] = useState(true);
   const [allProduct, setAllProduct] = useState([]);
   const [allProductClone, setAllProductClone] = useState([]);
   const [isLoadingAllProduct, setIsLoadingAllproduct] = useState();
+  const [noNeedReset, setNoNeedReset] = useState(false);
 
   const fetchAllProduct = async () => {
     setIsLoadingAllproduct(true);
@@ -30,11 +35,14 @@ const StoreProvider = ({ children }) => {
     }
   };
   const handleSearch = (value) => {
-    console.log(value);
+    if (pathName.includes("product")) {
+      setNoNeedReset(true);
+      router.push("/");
+    }
     const filteredData = allProductClone.filter((item) =>
       item.title.toLowerCase().includes(value.toLowerCase())
     );
-    setAllProduct(filteredData);
+    setAllProduct(!!filteredData ? filteredData : []);
   };
 
   return (
@@ -48,6 +56,8 @@ const StoreProvider = ({ children }) => {
         handleSearch,
         allProductClone,
         isLoadingAllProduct,
+        noNeedReset,
+        setNoNeedReset,
       }}
     >
       {children}

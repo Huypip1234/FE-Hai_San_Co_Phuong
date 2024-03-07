@@ -7,7 +7,8 @@ import { useRouter } from "next/navigation";
 import ProductSkeletonAdmin from "@/components/custom/CustomSkeleton/ProductSkeletonAdmin";
 
 const DashBoard = () => {
-  const { allProduct, fetchAllProduct, isLoadingAllProduct } = useStore();
+  const { allProduct, fetchAllProduct, isLoadingAllProduct, handleSearch } =
+    useStore();
   const { isMounted } = useMounted();
   const router = useRouter();
 
@@ -18,6 +19,7 @@ const DashBoard = () => {
   }, [isMounted]);
 
   useEffect(() => {
+    handleSearch("");
     window.scrollTo(0, 0);
     !localStorage.getItem("token") && router.push("/admin");
   }, []);
@@ -28,7 +30,7 @@ const DashBoard = () => {
         ? [...new Array(4)].map((_item, index) => (
             <ProductSkeletonAdmin key={index} />
           ))
-        : allProduct?.map((item) => <ProductItem data={item} key={item._id} />)}
+        : allProduct.length===0 ? <p>Không tìm thấy mặt hàng nào!</p> : (allProduct?.map((item) => <ProductItem data={item} key={item._id} />))}
     </div>
   );
 };

@@ -30,13 +30,16 @@ const ProductItem = ({ data }) => {
   return (
     <div className="grid grid-cols-9 gap-[1rem]">
       <div className="relative col-span-3 w-full aspect-square border-[2px] border-secondary border-solid">
-        <CustomImage
-          fill
-          alt="product"
-          src={data?.image}
-          className="object-cover object-center"
-        />
+        <Link href={`/admin/edit/${data?._id}`}>
+          <CustomImage
+            fill
+            alt="product"
+            src={data?.image}
+            className="object-cover object-center"
+          />
+        </Link>
       </div>
+
       <div className="col-span-4">
         <Link href={`/admin/edit/${data?._id}`}>
           <h2 className="text-secondary text-[16px] font-[700]">
