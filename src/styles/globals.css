@@ -16,6 +16,13 @@
   .admin-container {
     @apply max-w-[30rem] px-[16px] sm:px-[24px] mx-auto;
   }
+  .three_dot_2_line {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 @layer utilities {

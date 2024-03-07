@@ -42,7 +42,7 @@ const ProductItem = ({ data }) => {
 
       <div className="col-span-4">
         <Link href={`/admin/edit/${data?._id}`}>
-          <h2 className="text-secondary text-[16px] font-[700]">
+          <h2 className="text-secondary text-[16px] font-[700] break-all three_dot_2_line">
             {data?.title}
           </h2>
         </Link>

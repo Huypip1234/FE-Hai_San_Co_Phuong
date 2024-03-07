@@ -62,7 +62,7 @@ export default function Home() {
       />
 
       <div className="max-w-[1100px] mx-auto my-[2rem] ">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1rem] sm:gap-[1.5rem] ">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-[1rem] sm:gap-[1.5rem] auto-rows-min">
           {isLoadingAllProduct ? (
             [...new Array(12)].map((_item, index) => (
               <ProductSkeleton key={index} />

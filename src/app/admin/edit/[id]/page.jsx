@@ -166,14 +166,14 @@ const Edit = () => {
                 message: "Ít nhất 4 ký tự!",
               },
               {
-                max: 20,
-                message: "Nhiều nhất 20 ký tự!",
+                max: 50,
+                message: "Nhiều nhất 50 ký tự!",
               },
             ]}
           >
             <CustomInput
               showCount
-              maxLength={20}
+              maxLength={50}
               prefix={<EditOutlined className="text-slate-500" />}
               placeholder={currentProduct?.title}
             />
