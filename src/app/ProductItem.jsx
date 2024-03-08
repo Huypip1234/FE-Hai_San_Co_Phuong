@@ -18,7 +18,7 @@ const ProductItem = ({ data, ...props }) => {
 
           <div className="flex rounded-b-lg flex-col border-slate-300 border-x border-b  items-center p-[0.5rem] font-[600]">
             {/*  <div className="h-[2.5rem] sm:h-[3.1rem]"> */}
-            <h2 className="text-[14px] text-center sm:text-[18px] text-secondary break-all three_dot_2_line">
+            <h2 className="text-[14px] text-center sm:text-[18px] text-secondary three_dot_2_line">
               {data?.title}
             </h2>
             {/* </div> */}
