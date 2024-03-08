@@ -104,18 +104,16 @@ const Edit = () => {
 
     const data = {
       id: currentProduct?._id,
-      title: inputData.title && inputData.title,
-      price: inputData.title && inputData.price,
-      description: inputData.title && inputData.description,
+      title: inputData?.title?.length > 0 ? inputData.title : undefined,
+      price: inputData?.title?.length > 0 ? inputData.price : undefined,
+      description:
+        inputData?.title?.length > 0 ? inputData.description : undefined,
       image: imgCloud
         ? {
             url: imgCloud?.data?.data[0].url,
             public_id: imgCloud?.data?.data[0].publicId,
           }
-        : {
-            url: currentProduct?.image?.url,
-            public_id: currentProduct?.image?.public_id,
-          },
+        : undefined,
     };
 
     try {
