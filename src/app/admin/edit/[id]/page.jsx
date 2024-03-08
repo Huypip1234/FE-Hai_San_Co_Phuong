@@ -105,9 +105,8 @@ const Edit = () => {
     const data = {
       id: currentProduct?._id,
       title: inputData?.title?.length > 0 ? inputData.title : undefined,
-      price: inputData?.title?.length > 0 ? inputData.price : undefined,
-      description:
-        inputData?.title?.length > 0 ? inputData.description : undefined,
+      price: inputData?.price ? inputData.price : undefined,
+      description: inputData?.description ? inputData.description : undefined,
       image: imgCloud
         ? {
             url: imgCloud?.data?.data[0].url,
