@@ -104,9 +104,9 @@ const Edit = () => {
 
     const data = {
       id: currentProduct?._id,
-      title: inputData.title,
-      price: inputData.price,
-      description: inputData.description,
+      title: inputData.title && inputData.title,
+      price: inputData.title && inputData.price,
+      description: inputData.title && inputData.description,
       image: imgCloud
         ? {
             url: imgCloud?.data?.data[0].url,
