@@ -35,7 +35,7 @@ const ProductDetail = () => {
             <CustomImage
               fill
               alt="product"
-              src={currentProduct?.image}
+              src={currentProduct?.image?.url}
               className="object-cover object-center"
             />
           </div>

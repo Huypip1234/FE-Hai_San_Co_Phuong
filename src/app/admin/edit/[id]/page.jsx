@@ -15,6 +15,7 @@ import { editProduct } from "@/api/product";
 import { useStore } from "@/context";
 import useMounted from "@/hook/useMounted";
 import star from "../../../../../public/images/star.png";
+import { uploadImage } from "@/api/image";
 
 const Edit = () => {
   const [urlImage, setUrlImage] = useState(null);
@@ -86,13 +87,37 @@ const Edit = () => {
 
   const onSubmit = async (inputData) => {
     setLoading(true);
+    let imgCloud = null;
+    if (inputData.image) {
+      try {
+        const formData = new FormData();
+        formData.append("images", inputData.image.file.originFileObj);
+        imgCloud = await uploadImage(formData);
+        console.log(imgCloud);
+      } catch (err) {
+        toastError("Lỗi upload ảnh");
+        console.log(err);
+        setLoading(false);
+        return;
+      }
+    }
+
     const data = {
       id: currentProduct?._id,
       title: inputData.title,
       price: inputData.price,
       description: inputData.description,
-      image: urlImage,
+      image: imgCloud
+        ? {
+            url: imgCloud?.data?.data[0].url,
+            public_id: imgCloud?.data?.data[0].publicId,
+          }
+        : {
+            url: currentProduct?.image?.url,
+            public_id: currentProduct?.image?.public_id,
+          },
     };
+
     try {
       const response = await editProduct(data);
       toastSuccess(response?.data?.message);
@@ -143,7 +168,7 @@ const Edit = () => {
             >
               {urlImage || currentProduct?.image ? (
                 <CustomImage
-                  src={urlImage || currentProduct?.image}
+                  src={urlImage || currentProduct?.image?.url}
                   width={500}
                   height={500}
                   alt="upload-img"

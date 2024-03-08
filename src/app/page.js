@@ -69,7 +69,7 @@ export default function Home() {
               <ProductSkeleton key={index} />
             ))
           ) : allProduct?.length === 0 ? (
-            <p>Không tìm thấy mặt hàng nào!</p>
+            <p className="whitespace-nowrap">Không tìm thấy mặt hàng nào!</p>
           ) : (
             allProduct?.map((item, index) =>
               width < 640 && index < 4 ? (

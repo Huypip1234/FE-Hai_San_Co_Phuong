@@ -7,6 +7,7 @@ import { toastError, toastSuccess } from "@/utils/toast";
 import useMounted from "@/hook/useMounted";
 import { useStore } from "@/context";
 import Link from "next/link";
+import { removeImage } from "@/api/image";
 
 const ProductItem = ({ data }) => {
   const { isMounted } = useMounted();
@@ -15,6 +16,16 @@ const ProductItem = ({ data }) => {
 
   const onDelete = async () => {
     setLoading(true);
+    const publicId = data?.image?.public_id;
+    try {
+      await removeImage(publicId);
+    } catch (err) {
+      toastError("Lỗi xoá ảnh");
+      console.log(err);
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await deleteProduct(data?._id);
       toastSuccess(response?.data?.message);
@@ -34,7 +45,7 @@ const ProductItem = ({ data }) => {
           <CustomImage
             fill
             alt="product"
-            src={data?.image}
+            src={data?.image?.url}
             className="object-cover object-center"
           />
         </Link>

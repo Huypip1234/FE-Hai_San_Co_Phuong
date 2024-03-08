@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { addProduct } from "@/api/product";
 import { useStore } from "@/context";
 import useMounted from "@/hook/useMounted";
+import { uploadImage } from "@/api/image";
 
 const Create = () => {
   const [urlImage, setUrlImage] = useState("");
@@ -67,11 +68,28 @@ const Create = () => {
 
   const onSubmit = async (inputData) => {
     setLoading(true);
+
+    let imgCloud;
+    try {
+      const formData = new FormData();
+      formData.append("images", inputData.image.file.originFileObj);
+      imgCloud = await uploadImage(formData);
+      console.log(imgCloud);
+    } catch (err) {
+      toastError("Lỗi upload ảnh");
+      console.log(err);
+      setLoading(false);
+      return;
+    }
+
     const data = {
       title: inputData.title,
       price: inputData.price,
       description: inputData.description,
-      image: urlImage,
+      image: {
+        url: imgCloud?.data?.data[0].url,
+        public_id: imgCloud?.data?.data[0].publicId,
+      },
     };
     try {
       const response = await addProduct(data);

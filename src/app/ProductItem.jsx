@@ -9,7 +9,7 @@ const ProductItem = ({ data, ...props }) => {
         <div className=" group rounded-lg">
           <div className="relative w-full aspect-square overflow-hidden rounded-t-lg border-[1.5px] border-secondary">
             <CustomImage
-              src={data?.image}
+              src={data?.image?.url}
               alt="product"
               fill
               className=" object-cover object-center group-hover:scale-110 transition-all duration-300 ease-in-out"
