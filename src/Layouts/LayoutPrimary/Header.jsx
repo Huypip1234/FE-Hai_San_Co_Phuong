@@ -47,6 +47,7 @@ const Header = () => {
           <CloseOutlined
             onClick={() => {
               setIsShowSearch(false);
+              handleSearch("");
             }}
             className="sm:hidden text-[20px]"
           />
